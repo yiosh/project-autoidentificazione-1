@@ -20,6 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('/files', 'Api\FileController@storeDocuments');
 Route::post('/selfie', 'Api\FileController@storeSelfie');
+Route::get('/download-file/{file_name}', 'Api\FileController@downloadFile');
 
 
 Route::post('/send-verification-mail', 'Api\MailController@sendMail');
