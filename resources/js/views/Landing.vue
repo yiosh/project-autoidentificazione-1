@@ -29,11 +29,6 @@
               ><strong>INIZIA</strong></v-btn
             >
           </v-col>
-          <v-col>
-            <v-btn color="#1eaa03" block dark large @click="download"
-              ><strong>Download Test</strong></v-btn
-            >
-          </v-col>
         </v-row>
       </v-container>
     </v-card-text>

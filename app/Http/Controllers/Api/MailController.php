@@ -29,7 +29,7 @@ class MailController extends Controller
         
         $verificationCode = rand(11111,99999);
         $details['verification'] = DB::table('mail_verifications')
-        ->updateOrInsert(['user_id' => $user->id, 'email' => base64_encode($data['email'])], ['email' => base64_encode($data['email']), 'verification_code' => $verificationCode]);
+        ->updateOrInsert(['user_id' => $user->id, 'email' => $data['email']], ['email' => $data['email'], 'verification_code' => $verificationCode]);
         
         $details = [
             'title' => 'CODICE di verifica mail',
@@ -52,7 +52,7 @@ class MailController extends Controller
 
         $result = DB::table('users')
               ->where('id', $row['user_id'])
-              ->update(['email_verified_at' =>  Carbon::now(), 'ip_address' => base64_encode($_SERVER['REMOTE_ADDR'])]);
+              ->update(['email_verified_at' =>  Carbon::now()]);
 
         $delete = DB::table('mail_verifications')->where('id', '=', $row['id'])->delete();
 

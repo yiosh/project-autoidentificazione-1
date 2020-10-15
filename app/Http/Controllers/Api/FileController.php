@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
@@ -25,7 +24,9 @@ class FileController extends Controller
         $condice_fiscale = $this->storeFile($request->file(['codice_fiscale']), 'codice_fiscale');
         
         return response()->json([
-            'status' => true
+            'fronteUrl' => Storage::url($fronte),
+            'retroUrl' => Storage::url($retro),
+            'codiceFiscaleUrl' => Storage::url($condice_fiscale)
         ], 200);
     }
 
@@ -38,27 +39,11 @@ class FileController extends Controller
         $this->userId = $data['user_id'];
 
         $selfie = $this->storeFile($request->file(['selfie']), 'selfie');
-
-        $result = DB::table('users')->where('id', $data['user_id'])->update(['status' => 1]);
         
         return response()->json([
-            'status' => true,
+            'selfieUrl' => Storage::url($selfie),
+
         ], 200);
-    }
-
-    public function downloadFile($fileName, Request $request)
-    {
-        // $fileExists = Storage::download('/app/public/files/'.$data['file_name']);
-
-        $file = Storage::disk('public')->get("/files/".$fileName);
- 
-		return (new Response($file, 200))
-              ->header('Content-Type', 'image/jpeg');
-
-        // return response()->json([
-        //     'fileExists' => $fileExists,
-        //     'status' => true,
-        // ], 200);
     }
 
     public function storeFile($file, $content)
@@ -73,10 +58,10 @@ class FileController extends Controller
         $fileNameToStore = $fileName .'_'.time().'.'.$extension;
         // Upload Image
         $path = $file
-        ->storeAs('files', $fileNameToStore);
+        ->store('public');
 
         DB::table('files')
-        ->updateOrInsert(['user_id' => $this->userId, 'content' => $content], ['user_id' => $this->userId, 'name' => $fileNameToStore, 'content' => $content]);
+        ->updateOrInsert(['user_id' => $this->userId, 'content' => $content], ['user_id' => $this->userId, 'name' => $fileName, 'content' => $content, 'path' => Storage::url($path)]);
         
         return $path;
     }

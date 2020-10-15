@@ -17,7 +17,7 @@ class CreateSmsVerificationsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id')->index();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->string('telefono');
+            $table->string('telefono')->unique();
             $table->string('verification_code')->nullable();
             $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
