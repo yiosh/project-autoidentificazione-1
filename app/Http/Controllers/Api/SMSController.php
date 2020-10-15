@@ -40,7 +40,7 @@ class SMSController extends Controller
             )
         );
 
-        $result = DB::table('users')->where('id', $data['user_id'])->update(['telefono' =>  $data['telefono']]);
+        $result = DB::table('users')->where('id', $data['user_id'])->update(['telefono' =>  base64_encode($data['telefono'])]);
 
         $details['verification'] = DB::table('sms_verifications')->updateOrInsert(['user_id' => $data['user_id'], 'user_id' => $data['user_id'], 'telefono' => $data['telefono'], 'verification_code' => $verificationCode]);
 
