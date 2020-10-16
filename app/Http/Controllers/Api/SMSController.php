@@ -20,7 +20,7 @@ class SMSController extends Controller
         ]);
 
         // Your Account SID and Auth Token from twilio.com/console
-        $account_sid = ENV('ACCOUNT_SID');
+        $account_sid = env('ACCOUNT_SID');
         $auth_token = env('AUTH_TOKEN');
         // In production, these should be environment variables. E.g.:
         // $auth_token = $_ENV["TWILIO_AUTH_TOKEN"]
