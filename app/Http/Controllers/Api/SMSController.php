@@ -20,13 +20,11 @@ class SMSController extends Controller
         ]);
 
         // Your Account SID and Auth Token from twilio.com/console
-        $account_sid = env('ACCOUNT_SID');
-        $auth_token = env('AUTH_TOKEN');
+        $account_sid = config('app.account_sid');
         // In production, these should be environment variables. E.g.:
-        // $auth_token = $_ENV["TWILIO_AUTH_TOKEN"]
-
+        $auth_token = config('app.auth_token');
         // A Twilio number you own with SMS capabilities
-        $twilio_number = env('TWILIO_NUMBER');
+        $twilio_number = config('app.twilio_number');
         $verificationCode = rand(11111,99999);
 
 
