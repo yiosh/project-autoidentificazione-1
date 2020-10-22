@@ -11,19 +11,17 @@
       <v-col cols="12" md="6" class="d-flex justify-center align-center">
         <v-icon size="150">mdi-cellphone-link</v-icon>
       </v-col>
-      <v-col cols="12" md="6" class="d-flex align-center">
-        <v-form>
-          <p>
-            Per procedere alla verifica, inserisci il codice che ti abbiamo
-            inviato sul numero cui ti sei registrato.
-          </p>
-          <v-text-field
-            dense
-            label="Inserisci codice"
-            outlined
-            v-model="form.sms_code"
-          ></v-text-field>
-        </v-form>
+      <v-col cols="12" md="6" class="d-flex flex-column align-center">
+        <p>
+          Per procedere alla verifica, inserisci il codice che ti abbiamo
+          inviato sul numero cui ti sei registrato.
+        </p>
+        <v-text-field
+          dense
+          label="Inserisci codice"
+          outlined
+          v-model="form.sms_code"
+        ></v-text-field>
       </v-col>
     </v-row>
   </step>

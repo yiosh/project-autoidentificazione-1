@@ -4,6 +4,7 @@
     number="9"
     buttonText="PROCEDI"
     goTo="StepTen"
+    :isDisabled="isDisabled"
     :payload="form"
   >
     <v-row>
@@ -11,10 +12,12 @@
         <v-icon size="150">mdi-camera</v-icon>
       </v-col>
       <v-col cols="12" md="7" class="d-flexalign-center">
-        <v-form class="w-100 d-flex flex-column">
+        <v-form v-model="valid" class="w-100 d-flex flex-column">
           <p>Selfie con documento</p>
           <v-btn outlined>Scatta</v-btn>
           <v-file-input
+            :rules="fileSize"
+            accept="image/png, image/jpeg, application/pdf"
             class="mt-4"
             label="ALLEGA"
             truncate-length="15"
@@ -34,9 +37,24 @@ export default {
     Step,
   },
   data: () => ({
+    valid: true,
+    fileSize: [
+      (value) =>
+        !value ||
+        value.size < 5000000 ||
+        "La dimensione del file dovrebbe essere inferiore a 5 MB!",
+    ],
     form: {
       selfie: null,
     },
   }),
+  computed: {
+    isDisabled() {
+      if (this.form.selfie && this.valid) {
+        return false;
+      }
+      return true;
+    },
+  },
 };
 </script>
