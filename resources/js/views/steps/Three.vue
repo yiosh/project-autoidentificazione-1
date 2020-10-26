@@ -12,18 +12,18 @@
         <v-icon size="150">mdi-cellphone-link</v-icon>
       </v-col>
       <v-col cols="12" md="6" class="d-flex align-center">
-        <v-form>
-          <p>
-            Per procedere alla verifica, inserisci il codice che ti abbiamo
-            inviato sulla e-mail di registrazione.
-          </p>
-          <v-text-field
-            dense
-            label="Inserisci codice"
-            outlined
-            v-model="form.verification_code"
-          ></v-text-field>
-        </v-form>
+        <!-- <v-form> -->
+        <p>
+          Per procedere alla verifica, inserisci il codice che ti abbiamo
+          inviato sulla e-mail di registrazione.
+        </p>
+        <v-text-field
+          dense
+          label="Inserisci codice"
+          outlined
+          v-model="form.verification_code"
+        ></v-text-field>
+        <!-- </v-form> -->
       </v-col>
     </v-row>
   </step>
