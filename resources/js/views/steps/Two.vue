@@ -9,7 +9,9 @@
     >
         <v-row>
             <v-col cols="12" md="4" class="d-flex justify-center align-center">
-                <v-icon size="150">mdi-email-outline</v-icon>
+                <v-icon :size="$vuetify.breakpoint.smAndDown ? 80 : 150"
+                    >mdi-email-outline</v-icon
+                >
             </v-col>
             <v-col cols="12" md="8" class="d-flex flex-column align-left">
                 <p class="text">

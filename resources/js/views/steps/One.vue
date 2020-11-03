@@ -10,7 +10,9 @@
         <v-form v-model="valid">
             <v-row>
                 <v-col cols="12" md="4" class="d-flex justify-center">
-                    <v-icon size="150">mdi-shield-key-outline</v-icon>
+                    <v-icon :size="$vuetify.breakpoint.smAndDown ? 80 : 150"
+                        >mdi-shield-key-outline</v-icon
+                    >
                 </v-col>
                 <v-col cols="12" md="8">
                     <v-text-field
@@ -21,7 +23,6 @@
                         :rules="[rules.required]"
                         v-model="form.nome"
                         outlined
-                        v-on:keyup.enter="submitForm"
                     ></v-text-field>
                     <v-text-field
                         dense
@@ -30,17 +31,14 @@
                         :rules="[rules.required]"
                         v-model="form.cognome"
                         outlined
-                        v-on:keyup.enter="submitForm"
                     ></v-text-field>
                     <v-text-field
                         dense
                         color="#160c49"
-                        counter="16"
                         :rules="[rules.counterMax, rules.counterMin]"
                         label="Codice Fiscale"
                         v-model="form.codice_fiscale"
                         outlined
-                        v-on:keyup.enter="submitForm"
                     ></v-text-field>
                     <v-text-field
                         dense
@@ -49,7 +47,6 @@
                         :rules="[rules.required]"
                         v-model="form.username"
                         outlined
-                        v-on:keyup.enter="submitForm"
                     ></v-text-field>
                 </v-col>
             </v-row>
@@ -74,8 +71,10 @@ export default {
         },
         rules: {
             required: value => !!value || "Obbligatorio",
-            counterMin: value => value.length === 16 || "Min 16 caratteri",
-            counterMax: value => value.length <= 16 || "Max 16 caratteri"
+            counterMin: value =>
+                value.length === 16 || "Inserisci un codifce fiscale valido",
+            counterMax: value =>
+                value.length <= 16 || "Inserisci un codifce fiscale valido"
         }
     }),
     computed: {

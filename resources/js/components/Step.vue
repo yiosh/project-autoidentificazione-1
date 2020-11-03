@@ -2,15 +2,12 @@
     <v-card class="mx-auto" max-width="500" :elevation="elevation">
         <v-toolbar color="#f2f2f2" light elevation="0">
             <v-toolbar-title class="mx-auto">
-                <v-avatar color="#160c49" class="mr-2" size="42"
-                    ><span class="white--text headline">{{
-                        number
-                    }}</span></v-avatar
-                >
-                <strong style="color: #150b48">{{
-                    title
-                }}</strong></v-toolbar-title
-            >
+                <v-img
+                    contain
+                    max-height="48px"
+                    src="https://online.betitaly.it/l.ashx?u=layout/logo.png"
+                ></v-img>
+            </v-toolbar-title>
             <!-- <v-btn color="#160c49" dark absolute bottom left fab>
         <v-icon>{{ number }}</v-icon>
       </v-btn> -->
@@ -19,6 +16,16 @@
         <v-card-text class="pt-4 pb-4 px-8">
             <v-container class="mx-auto">
                 <v-form @submit.prevent="handleStep">
+                    <v-row>
+                        <v-col>
+                            <v-avatar color="#160c49" class="mr-1" size="24"
+                                ><span class="white--text">{{
+                                    number
+                                }}</span></v-avatar
+                            >
+                            <strong style="color: #150b48">{{ title }}</strong>
+                        </v-col>
+                    </v-row>
                     <slot></slot>
                     <v-row v-if="goTo && buttonText">
                         <v-col>
@@ -191,12 +198,12 @@ export default {
                         console.log(response);
                         this.btnLoading = false;
                         this.openDialog(
-                            "I file sono stati caricati con successo"
+                            "Il selfie è stato caricato con successo"
                         );
                     } else {
                         this.btnLoading = false;
                         alert(
-                            "Si è verificato un problema durante il caricamento dei file, riprova più tardi"
+                            "Si è verificato un problema durante il caricamento del selfie, riprova"
                         );
                     }
                 })

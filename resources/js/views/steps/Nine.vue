@@ -9,7 +9,9 @@
     >
         <v-row>
             <v-col cols="12" md="5" class="d-flex justify-center align-center">
-                <v-icon size="150">mdi-camera</v-icon>
+                <v-icon :size="$vuetify.breakpoint.smAndDown ? 80 : 150"
+                    >mdi-camera</v-icon
+                >
             </v-col>
             <v-col cols="12" md="7" class="d-flexalign-center">
                 <v-form v-model="valid" class="w-100 d-flex flex-column">

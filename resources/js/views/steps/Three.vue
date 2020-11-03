@@ -9,7 +9,9 @@
     >
         <v-row>
             <v-col cols="12" md="6" class="d-flex justify-center align-center">
-                <v-icon size="150">mdi-cellphone-link</v-icon>
+                <v-icon :size="$vuetify.breakpoint.smAndDown ? 80 : 150"
+                    >mdi-cellphone-link</v-icon
+                >
             </v-col>
             <v-col cols="12" md="6" class="d-flex flex-column align-left">
                 <!-- <v-form> -->
@@ -22,7 +24,6 @@
                     dense
                     label="Inserisci codice"
                     outlined
-                    v-on:keyup.enter="submitForm"
                     v-model="form.verification_code"
                 ></v-text-field>
                 <!-- </v-form> -->

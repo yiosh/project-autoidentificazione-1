@@ -101,6 +101,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -205,10 +212,10 @@ __webpack_require__.r(__webpack_exports__);
           console.log(response);
           _this3.btnLoading = false;
 
-          _this3.openDialog("I file sono stati caricati con successo");
+          _this3.openDialog("Il selfie è stato caricato con successo");
         } else {
           _this3.btnLoading = false;
-          alert("Si è verificato un problema durante il caricamento dei file, riprova più tardi");
+          alert("Si è verificato un problema durante il caricamento del selfie, riprova");
         }
       })["catch"](function (error) {
         _this3.btnLoading = false;
@@ -394,6 +401,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -435,6 +445,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Step__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../components/Step */ "./resources/js/components/Step.vue");
+//
+//
 //
 //
 //
@@ -577,6 +589,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -672,9 +686,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -694,10 +705,10 @@ __webpack_require__.r(__webpack_exports__);
           return !!value || "Obbligatorio";
         },
         counterMin: function counterMin(value) {
-          return value.length === 16 || "Min 16 caratteri";
+          return value.length === 16 || "Inserisci un codifce fiscale valido";
         },
         counterMax: function counterMax(value) {
-          return value.length <= 16 || "Max 16 caratteri";
+          return value.length <= 16 || "Inserisci un codifce fiscale valido";
         }
       }
     };
@@ -745,6 +756,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -764,6 +779,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Step__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../components/Step */ "./resources/js/components/Step.vue");
+//
+//
 //
 //
 //
@@ -902,6 +919,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -939,6 +957,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Step__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../components/Step */ "./resources/js/components/Step.vue");
+//
+//
 //
 //
 //
@@ -1035,22 +1055,13 @@ var render = function() {
             "v-toolbar-title",
             { staticClass: "mx-auto" },
             [
-              _c(
-                "v-avatar",
-                {
-                  staticClass: "mr-2",
-                  attrs: { color: "#160c49", size: "42" }
-                },
-                [
-                  _c("span", { staticClass: "white--text headline" }, [
-                    _vm._v(_vm._s(_vm.number))
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c("strong", { staticStyle: { color: "#150b48" } }, [
-                _vm._v(_vm._s(_vm.title))
-              ])
+              _c("v-img", {
+                attrs: {
+                  contain: "",
+                  "max-height": "48px",
+                  src: "https://online.betitaly.it/l.ashx?u=layout/logo.png"
+                }
+              })
             ],
             1
           )
@@ -1077,6 +1088,35 @@ var render = function() {
                   }
                 },
                 [
+                  _c(
+                    "v-row",
+                    [
+                      _c(
+                        "v-col",
+                        [
+                          _c(
+                            "v-avatar",
+                            {
+                              staticClass: "mr-1",
+                              attrs: { color: "#160c49", size: "24" }
+                            },
+                            [
+                              _c("span", { staticClass: "white--text" }, [
+                                _vm._v(_vm._s(_vm.number))
+                              ])
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("strong", { staticStyle: { color: "#150b48" } }, [
+                            _vm._v(_vm._s(_vm.title))
+                          ])
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
                   _vm._t("default"),
                   _vm._v(" "),
                   _vm.goTo && _vm.buttonText
@@ -1274,9 +1314,13 @@ var render = function() {
               attrs: { cols: "12", md: "4" }
             },
             [
-              _c("v-icon", { attrs: { size: "150" } }, [
-                _vm._v("mdi-file-document-outline")
-              ])
+              _c(
+                "v-icon",
+                {
+                  attrs: { size: _vm.$vuetify.breakpoint.smAndDown ? 80 : 150 }
+                },
+                [_vm._v("mdi-file-document-outline")]
+              )
             ],
             1
           ),
@@ -1361,11 +1405,11 @@ var render = function() {
           _c("v-col", [
             _c("p", [
               _vm._v(
-                "\n        I documenti accettati sono: Carta d'identità, Patente e Passaporto.\n        "
+                "\n                I documenti accettati sono: Carta d'identità, Patente e\n                Passaporto.\n                "
               ),
               _c("br"),
               _vm._v(
-                "\n        Per i nati all'estero e necessario presentare il Passaporto o la Carta\n        d'identità Italiana in corso di validità.\n      "
+                "\n                Per i nati all'estero e necessario presentare il Passaporto\n                o la Carta d'identità Italiana in corso di validità.\n            "
               )
             ])
           ])
@@ -1421,9 +1465,13 @@ var render = function() {
               attrs: { cols: "12", md: "6" }
             },
             [
-              _c("v-icon", { attrs: { size: "150" } }, [
-                _vm._v("mdi-cellphone-iphone")
-              ])
+              _c(
+                "v-icon",
+                {
+                  attrs: { size: _vm.$vuetify.breakpoint.smAndDown ? 80 : 150 }
+                },
+                [_vm._v("mdi-cellphone-iphone")]
+              )
             ],
             1
           ),
@@ -1573,7 +1621,15 @@ var render = function() {
               staticClass: "d-flex justify-center align-center",
               attrs: { cols: "12", md: "5" }
             },
-            [_c("v-icon", { attrs: { size: "150" } }, [_vm._v("mdi-camera")])],
+            [
+              _c(
+                "v-icon",
+                {
+                  attrs: { size: _vm.$vuetify.breakpoint.smAndDown ? 80 : 150 }
+                },
+                [_vm._v("mdi-camera")]
+              )
+            ],
             1
           ),
           _vm._v(" "),
@@ -1708,9 +1764,15 @@ var render = function() {
                   attrs: { cols: "12", md: "4" }
                 },
                 [
-                  _c("v-icon", { attrs: { size: "150" } }, [
-                    _vm._v("mdi-shield-key-outline")
-                  ])
+                  _c(
+                    "v-icon",
+                    {
+                      attrs: {
+                        size: _vm.$vuetify.breakpoint.smAndDown ? 80 : 150
+                      }
+                    },
+                    [_vm._v("mdi-shield-key-outline")]
+                  )
                 ],
                 1
               ),
@@ -1727,23 +1789,6 @@ var render = function() {
                       label: "Nome",
                       rules: [_vm.rules.required],
                       outlined: ""
-                    },
-                    on: {
-                      keyup: function($event) {
-                        if (
-                          !$event.type.indexOf("key") &&
-                          _vm._k(
-                            $event.keyCode,
-                            "enter",
-                            13,
-                            $event.key,
-                            "Enter"
-                          )
-                        ) {
-                          return null
-                        }
-                        return _vm.submitForm($event)
-                      }
                     },
                     model: {
                       value: _vm.form.nome,
@@ -1762,23 +1807,6 @@ var render = function() {
                       rules: [_vm.rules.required],
                       outlined: ""
                     },
-                    on: {
-                      keyup: function($event) {
-                        if (
-                          !$event.type.indexOf("key") &&
-                          _vm._k(
-                            $event.keyCode,
-                            "enter",
-                            13,
-                            $event.key,
-                            "Enter"
-                          )
-                        ) {
-                          return null
-                        }
-                        return _vm.submitForm($event)
-                      }
-                    },
                     model: {
                       value: _vm.form.cognome,
                       callback: function($$v) {
@@ -1792,27 +1820,9 @@ var render = function() {
                     attrs: {
                       dense: "",
                       color: "#160c49",
-                      counter: "16",
                       rules: [_vm.rules.counterMax, _vm.rules.counterMin],
                       label: "Codice Fiscale",
                       outlined: ""
-                    },
-                    on: {
-                      keyup: function($event) {
-                        if (
-                          !$event.type.indexOf("key") &&
-                          _vm._k(
-                            $event.keyCode,
-                            "enter",
-                            13,
-                            $event.key,
-                            "Enter"
-                          )
-                        ) {
-                          return null
-                        }
-                        return _vm.submitForm($event)
-                      }
                     },
                     model: {
                       value: _vm.form.codice_fiscale,
@@ -1830,23 +1840,6 @@ var render = function() {
                       label: "Username",
                       rules: [_vm.rules.required],
                       outlined: ""
-                    },
-                    on: {
-                      keyup: function($event) {
-                        if (
-                          !$event.type.indexOf("key") &&
-                          _vm._k(
-                            $event.keyCode,
-                            "enter",
-                            13,
-                            $event.key,
-                            "Enter"
-                          )
-                        ) {
-                          return null
-                        }
-                        return _vm.submitForm($event)
-                      }
                     },
                     model: {
                       value: _vm.form.username,
@@ -1912,9 +1905,16 @@ var render = function() {
               attrs: { cols: "12" }
             },
             [
-              _c("v-icon", { attrs: { color: "success", size: "150" } }, [
-                _vm._v("mdi-check")
-              ])
+              _c(
+                "v-icon",
+                {
+                  attrs: {
+                    color: "success",
+                    size: _vm.$vuetify.breakpoint.smAndDown ? 80 : 150
+                  }
+                },
+                [_vm._v("mdi-check")]
+              )
             ],
             1
           ),
@@ -1925,7 +1925,7 @@ var render = function() {
             [
               _c("p", { staticClass: "text-center mx-auto" }, [
                 _vm._v(
-                  "\n        Il tuo numero di telefono è stato verificato con successo\n      "
+                  "\n                Il tuo numero di telefono è stato verificato con successo\n            "
                 )
               ])
             ]
@@ -1982,9 +1982,13 @@ var render = function() {
               attrs: { cols: "12", md: "6" }
             },
             [
-              _c("v-icon", { attrs: { size: "150" } }, [
-                _vm._v("mdi-cellphone-link")
-              ])
+              _c(
+                "v-icon",
+                {
+                  attrs: { size: _vm.$vuetify.breakpoint.smAndDown ? 80 : 150 }
+                },
+                [_vm._v("mdi-cellphone-link")]
+              )
             ],
             1
           ),
@@ -2146,9 +2150,13 @@ var render = function() {
               attrs: { cols: "12", md: "6" }
             },
             [
-              _c("v-icon", { attrs: { size: "150" } }, [
-                _vm._v("mdi-cellphone-link")
-              ])
+              _c(
+                "v-icon",
+                {
+                  attrs: { size: _vm.$vuetify.breakpoint.smAndDown ? 80 : 150 }
+                },
+                [_vm._v("mdi-cellphone-link")]
+              )
             ],
             1
           ),
@@ -2172,17 +2180,6 @@ var render = function() {
                   dense: "",
                   label: "Inserisci codice",
                   outlined: ""
-                },
-                on: {
-                  keyup: function($event) {
-                    if (
-                      !$event.type.indexOf("key") &&
-                      _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
-                    ) {
-                      return null
-                    }
-                    return _vm.submitForm($event)
-                  }
                 },
                 model: {
                   value: _vm.form.verification_code,
@@ -2247,9 +2244,13 @@ var render = function() {
               attrs: { cols: "12", md: "4" }
             },
             [
-              _c("v-icon", { attrs: { size: "150" } }, [
-                _vm._v("mdi-email-outline")
-              ])
+              _c(
+                "v-icon",
+                {
+                  attrs: { size: _vm.$vuetify.breakpoint.smAndDown ? 80 : 150 }
+                },
+                [_vm._v("mdi-email-outline")]
+              )
             ],
             1
           ),
@@ -2352,7 +2353,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuetify_lib_components_VDivider__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuetify/lib/components/VDivider */ "./node_modules/vuetify/lib/components/VDivider/index.js");
 /* harmony import */ var vuetify_lib_components_VForm__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vuetify/lib/components/VForm */ "./node_modules/vuetify/lib/components/VForm/index.js");
 /* harmony import */ var vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vuetify/lib/components/VIcon */ "./node_modules/vuetify/lib/components/VIcon/index.js");
-/* harmony import */ var vuetify_lib_components_VToolbar__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! vuetify/lib/components/VToolbar */ "./node_modules/vuetify/lib/components/VToolbar/index.js");
+/* harmony import */ var vuetify_lib_components_VImg__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! vuetify/lib/components/VImg */ "./node_modules/vuetify/lib/components/VImg/index.js");
+/* harmony import */ var vuetify_lib_components_VToolbar__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! vuetify/lib/components/VToolbar */ "./node_modules/vuetify/lib/components/VToolbar/index.js");
 
 
 
@@ -2388,7 +2390,8 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 
 
-_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default()(component, {VAvatar: vuetify_lib_components_VAvatar__WEBPACK_IMPORTED_MODULE_4__["VAvatar"],VBtn: vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_5__["VBtn"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCard"],VCardActions: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCardActions"],VCardText: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCardText"],VCol: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VCol"],VContainer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VContainer"],VDialog: vuetify_lib_components_VDialog__WEBPACK_IMPORTED_MODULE_8__["VDialog"],VDivider: vuetify_lib_components_VDivider__WEBPACK_IMPORTED_MODULE_9__["VDivider"],VForm: vuetify_lib_components_VForm__WEBPACK_IMPORTED_MODULE_10__["VForm"],VIcon: vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_11__["VIcon"],VRow: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VRow"],VSpacer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VSpacer"],VToolbar: vuetify_lib_components_VToolbar__WEBPACK_IMPORTED_MODULE_12__["VToolbar"],VToolbarTitle: vuetify_lib_components_VToolbar__WEBPACK_IMPORTED_MODULE_12__["VToolbarTitle"]})
+
+_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default()(component, {VAvatar: vuetify_lib_components_VAvatar__WEBPACK_IMPORTED_MODULE_4__["VAvatar"],VBtn: vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_5__["VBtn"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCard"],VCardActions: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCardActions"],VCardText: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCardText"],VCol: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VCol"],VContainer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VContainer"],VDialog: vuetify_lib_components_VDialog__WEBPACK_IMPORTED_MODULE_8__["VDialog"],VDivider: vuetify_lib_components_VDivider__WEBPACK_IMPORTED_MODULE_9__["VDivider"],VForm: vuetify_lib_components_VForm__WEBPACK_IMPORTED_MODULE_10__["VForm"],VIcon: vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_11__["VIcon"],VImg: vuetify_lib_components_VImg__WEBPACK_IMPORTED_MODULE_12__["VImg"],VRow: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VRow"],VSpacer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VSpacer"],VToolbar: vuetify_lib_components_VToolbar__WEBPACK_IMPORTED_MODULE_13__["VToolbar"],VToolbarTitle: vuetify_lib_components_VToolbar__WEBPACK_IMPORTED_MODULE_13__["VToolbarTitle"]})
 
 
 /* hot reload */
