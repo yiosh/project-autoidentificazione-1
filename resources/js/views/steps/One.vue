@@ -33,6 +33,7 @@
                         outlined
                     ></v-text-field>
                     <v-text-field
+                        @keydown.space.prevent
                         dense
                         color="#160c49"
                         :rules="[rules.counterMax, rules.counterMin]"

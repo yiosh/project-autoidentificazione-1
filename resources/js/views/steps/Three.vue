@@ -45,7 +45,6 @@ export default {
     }),
     computed: {
         isDisabled() {
-            return false;
             if (this.form.verification_code) {
                 return false;
             }

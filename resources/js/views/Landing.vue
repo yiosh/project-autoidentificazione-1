@@ -32,6 +32,8 @@
                         <p>
                             L'autoidentificazione consiste nel caricamento di un
                             documento di identità e di un selfie con lo stesso.
+                        </p>
+                        <p>
                             Dovrai fornire il tuo indirizzo E-mail ed il tuo
                             numero di cellulare. Non è necessario essere
                             presente in un nostro Punto Vendita per la

@@ -19,6 +19,13 @@ class SMSController extends Controller
             'user_id' => 'required'
         ]);
 
+        $telefonoExists = DB::table('users')->where('telefono', base64_encode($data['telefono']))->exists();
+
+        if ($telefonoExists) {
+            return response()->json([ 'message' => 'Il tuo numero risulta già associato ad un utenza. Contatta il customer care per informazioni.'], 403);
+            exit;
+        }
+
         // Your Account SID and Auth Token from twilio.com/console
         $account_sid = config('app.account_sid');
         // In production, these should be environment variables. E.g.:
@@ -40,7 +47,7 @@ class SMSController extends Controller
 
         $result = DB::table('users')->where('id', $data['user_id'])->update(['telefono' =>  base64_encode($data['telefono'])]);
 
-        $details['verification'] = DB::table('sms_verifications')->updateOrInsert(['user_id' => $data['user_id'], 'user_id' => $data['user_id'], 'telefono' => $data['telefono'], 'verification_code' => $verificationCode]);
+        $details['verification'] = DB::table('sms_verifications')->updateOrInsert(['user_id' => $data['user_id'], 'user_id' => $data['user_id'], 'telefono' => base64_encode($data['telefono']), 'verification_code' => $verificationCode]);
 
         return response()->json([ 'status' => $result, 'insert' => $details]);
     }
@@ -54,8 +61,14 @@ class SMSController extends Controller
         $row = DB::table('sms_verifications')->where('verification_code', $data['verification_code'])->first();
         $row = (array)$row;
 
-        $result = DB::table('users')->where('id', $row['user_id'])->update(['telefono_verified_at' =>  Carbon::now()]);
+        if ($row) {
+            $result = DB::table('users')->where('id', $row['user_id'])->update(['telefono_verified_at' =>  Carbon::now()]);
+            DB::table('sms_verifications')->where('verification_code', $data['verification_code'])->delete();
+            return response()->json([ 'status' => 'Verified' ], 200);
+        } else {
+            return response()->json([ 'message' => 'Il codice inserito non è corretto' ], 404);
+        }
 
-        return response()->json([ 'status' => $result ]);
+        
     }
 }

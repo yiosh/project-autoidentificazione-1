@@ -47,15 +47,19 @@ class MailController extends Controller
         ]);
 
         $row = DB::table('mail_verifications')->where('verification_code', $data['verification_code'])->first();
-        $row = (array)$row;
-        $userId = $row['user_id'];
+        if ($row) {
+            $row = (array)$row;
+            $userId = $row['user_id'];
 
-        $result = DB::table('users')
-              ->where('id', $row['user_id'])
-              ->update(['email_verified_at' =>  Carbon::now(), 'ip_address' => base64_encode($_SERVER['REMOTE_ADDR'])]);
+            $result = DB::table('users')
+                ->where('id', $row['user_id'])
+                ->update(['email_verified_at' =>  Carbon::now(), 'ip_address' => base64_encode($_SERVER['REMOTE_ADDR'])]);
 
-        $delete = DB::table('mail_verifications')->where('id', '=', $row['id'])->delete();
+            $delete = DB::table('mail_verifications')->where('id', '=', $row['id'])->delete();
 
-        return response()->json([ 'status' => $result, 'delete' => $delete, 'user_id' => $userId ]);
+            return response()->json([ 'status' => $result, 'delete' => $delete, 'user_id' => $userId ]);
+        } else {
+            return response()->json([ 'message' => 'Il codice inserito non è valido.' ], 404);
+        }
     }
 }

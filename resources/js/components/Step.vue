@@ -261,6 +261,9 @@ export default {
                 })
                 .catch(error => {
                     this.btnLoading = false;
+                    if (error.response.status == 404) {
+                        return alert(error.response.data.message);
+                    }
                     return alert(error);
                 });
         },
@@ -290,6 +293,13 @@ export default {
                 })
                 .catch(error => {
                     this.btnLoading = false;
+                    if (error.response.status == 403) {
+                        return alert(error.response.data.message);
+                    } else if (error.response.status == 500) {
+                        return alert(
+                            "Il numero di telefono inserito non è valido"
+                        );
+                    }
                     return alert(error);
                 });
         },
@@ -307,15 +317,15 @@ export default {
 
                         this.btnLoading = false;
                         this.$router.push({ name: this.goTo });
-                    } else {
-                        this.btnLoading = false;
-                        alert(
-                            "Si è verificato un problema durante la verifica della tua email, riprova"
-                        );
                     }
                 })
                 .catch(error => {
                     this.btnLoading = false;
+                    console.log("error", error.response);
+                    if (error.response.status == 404) {
+                        return alert(error.response.data.message);
+                    }
+
                     return alert(error);
                 });
         },

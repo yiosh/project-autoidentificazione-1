@@ -24,7 +24,6 @@ import EventBus from "./eventbus";
 
 export default {
     created() {
-        console.log(this.$vuetify);
         // this.$router.push("/");
     },
     mounted() {
