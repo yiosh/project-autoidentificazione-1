@@ -43,7 +43,7 @@
                     I documenti accettati sono: Carta d'identità, Patente e
                     Passaporto.
                     <br />
-                    Per i nati all'estero e necessario presentare il Passaporto
+                    Per i nati all'estero è necessario presentare il Passaporto
                     o la Carta d'identità Italiana in corso di validità.
                 </p>
             </v-col>

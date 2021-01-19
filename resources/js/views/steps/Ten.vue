@@ -11,11 +11,6 @@
                     conferma.
                 </p>
             </v-col>
-            <v-col class="text-center">
-                <v-btn href="https://online.betitaly.it/" color="success"
-                    >Vai a BetItaly.it</v-btn
-                >
-            </v-col>
         </v-row>
     </step>
 </template>

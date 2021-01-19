@@ -58,8 +58,6 @@
         </v-card-text>
         <v-dialog v-model="dialog" width="500" persistent>
             <v-card>
-                <!-- <v-card-title class="headline grey lighten-2"> {{ text }} </v-card-title> -->
-
                 <v-card-text>
                     <v-container>
                         <v-row

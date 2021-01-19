@@ -16,6 +16,27 @@
                 </v-col>
             </v-row>
         </v-container>
+        <v-footer>
+            <v-container>
+                <v-row>
+                    <v-col
+                        :cols="cols"
+                        class="d-flex justify-center align-center py-0"
+                        ><small
+                            >GI.LU.PI. SRL P.I. 03350310755 Conc. GAD
+                            15074</small
+                        ></v-col
+                    >
+                    <v-col class="d-flex justify-center align-center py-0">
+                        <a
+                            href="https://online.betitaly.it/privacy?cookieprivacy=true"
+                            target="__blank"
+                            ><small>Privacy</small></a
+                        ></v-col
+                    >
+                </v-row>
+            </v-container>
+        </v-footer>
     </v-app>
 </template>
 
@@ -24,7 +45,8 @@ import EventBus from "./eventbus";
 
 export default {
     created() {
-        // this.$router.push("/");
+        this.$router.push("/");
+        // console.log(this.$vuetify.breakpoint);
     },
     mounted() {
         document.addEventListener("keypress", e => {
@@ -38,6 +60,15 @@ export default {
                 }
             }
         });
+    },
+    computed: {
+        cols() {
+            if (this.$vuetify.breakpoint.name == "xs") {
+                return 12;
+            } else {
+                return 6;
+            }
+        }
     }
 };
 </script>

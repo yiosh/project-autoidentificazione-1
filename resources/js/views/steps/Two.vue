@@ -15,7 +15,7 @@
             </v-col>
             <v-col cols="12" md="8" class="d-flex flex-column align-left">
                 <p class="text">
-                    Inserisci indirizzo e-mail con cui ti sei registrato doce ti
+                    Inserisci indirizzo e-mail con cui ti sei registrato dove ti
                     invieremo il codice sicurezza
                 </p>
                 <v-text-field

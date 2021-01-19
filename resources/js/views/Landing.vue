@@ -39,6 +39,16 @@
                             presente in un nostro Punto Vendita per la
                             validazione del tuo account.
                         </p>
+                        <p>
+                            Avviando la procedura ci autorizzi ad usare i tuoi
+                            dati per l'identificazione come indicato nella
+                            nostra informativa che puoi leggere
+                            <a
+                                href="https://online.betitaly.it/privacy?cookieprivacy=true"
+                                target="__blank"
+                                >QUI</a
+                            >.
+                        </p>
                     </v-col>
                 </v-row>
                 <v-row>
@@ -63,9 +73,6 @@
 import EventBus from "../eventbus";
 
 export default {
-    created() {
-        console.log("breakpoint", this.$vuetify.breakpoint);
-    },
     mounted() {
         EventBus.$on("landingsubmit", () => {
             this.$refs.landingBtn.$el.click();

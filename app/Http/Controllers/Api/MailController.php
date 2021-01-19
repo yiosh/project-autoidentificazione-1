@@ -20,7 +20,6 @@ class MailController extends Controller
             'email' => 'required'
         ]);
 
-        
         $details['user'] = DB::table('users')
         ->updateOrInsert(['email' => $data['email']], $data);
 
