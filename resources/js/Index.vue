@@ -45,6 +45,29 @@ import EventBus from "./eventbus";
 
 export default {
     created() {
+        if (
+            this.$route.query.name ||
+            this.$route.query.lastname ||
+            this.$route.query.cf ||
+            this.$route.query.username
+        ) {
+            let query = JSON.parse(JSON.stringify(this.$route.query));
+            query.nome = query.name;
+            query.cognome = query.lastname;
+            query.codice_fiscale = query.cf;
+
+            delete query.name;
+            delete query.lastname;
+            delete query.cf;
+            // localStorage.query = JSON.stringify(query);
+            for (const key in query) {
+                const element = atob(query[key]);
+                localStorage.setItem(key, element);
+                query[key] = element;
+            }
+            this.$store.commit("setStep", query);
+            console.log("query", query);
+        }
         this.$router.push("/");
         // console.log(this.$vuetify.breakpoint);
     },

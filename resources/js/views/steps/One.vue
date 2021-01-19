@@ -78,6 +78,9 @@ export default {
                 value.length <= 16 || "Inserisci un codifce fiscale valido"
         }
     }),
+    created() {
+        this.form = Object.assign(this.form, this.$store.state.form);
+    },
     computed: {
         isDisabled() {
             if (
