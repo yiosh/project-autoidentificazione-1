@@ -133,6 +133,12 @@ export default {
     methods: {
         handleStep() {
             this.$store.commit("setStep", this.payload);
+            if (this.goTo == "StepTen") {
+                localStorage.removeItem("nome");
+                localStorage.removeItem("cognome");
+                localStorage.removeItem("username");
+                localStorage.removeItem("codice_fiscale");
+            }
             if (this.payload) {
                 if (this.payload.email) {
                     this.sendVerificationMail();
