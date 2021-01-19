@@ -707,6 +707,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -721,6 +725,10 @@ __webpack_require__.r(__webpack_exports__);
         codice_fiscale: "",
         username: ""
       },
+      nomeDisabled: false,
+      cognomeDisabled: false,
+      cfDisabled: false,
+      usernameDisabled: false,
       rules: {
         required: function required(value) {
           return !!value || "Obbligatorio";
@@ -736,6 +744,23 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     this.form = Object.assign(this.form, this.$store.state.form);
+  },
+  mounted: function mounted() {
+    if (this.form.nome) {
+      this.nomeDisabled = true;
+    }
+
+    if (this.form.cognome) {
+      this.cognomeDisabled = true;
+    }
+
+    if (this.form.codice_fiscale) {
+      this.cfDisabled = true;
+    }
+
+    if (this.form.username) {
+      this.usernameDisabled = true;
+    }
   },
   computed: {
     isDisabled: function isDisabled() {
@@ -1805,6 +1830,7 @@ var render = function() {
                       color: "#160c49",
                       label: "Nome",
                       rules: [_vm.rules.required],
+                      disabled: _vm.nomeDisabled,
                       outlined: ""
                     },
                     model: {
@@ -1822,6 +1848,7 @@ var render = function() {
                       color: "#160c49",
                       label: "Cognome",
                       rules: [_vm.rules.required],
+                      disabled: _vm.cognomeDisabled,
                       outlined: ""
                     },
                     model: {
@@ -1839,6 +1866,7 @@ var render = function() {
                       color: "#160c49",
                       rules: [_vm.rules.counterMax, _vm.rules.counterMin],
                       label: "Codice Fiscale",
+                      disabled: _vm.cfDisabled,
                       outlined: ""
                     },
                     on: {
@@ -1870,6 +1898,7 @@ var render = function() {
                       color: "#160c49",
                       label: "Username",
                       rules: [_vm.rules.required],
+                      disabled: _vm.usernameDisabled,
                       outlined: ""
                     },
                     model: {

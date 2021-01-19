@@ -22,6 +22,7 @@
                         label="Nome"
                         :rules="[rules.required]"
                         v-model="form.nome"
+                        :disabled="nomeDisabled"
                         outlined
                     ></v-text-field>
                     <v-text-field
@@ -30,6 +31,7 @@
                         label="Cognome"
                         :rules="[rules.required]"
                         v-model="form.cognome"
+                        :disabled="cognomeDisabled"
                         outlined
                     ></v-text-field>
                     <v-text-field
@@ -39,6 +41,7 @@
                         :rules="[rules.counterMax, rules.counterMin]"
                         label="Codice Fiscale"
                         v-model="form.codice_fiscale"
+                        :disabled="cfDisabled"
                         outlined
                     ></v-text-field>
                     <v-text-field
@@ -47,6 +50,7 @@
                         label="Username"
                         :rules="[rules.required]"
                         v-model="form.username"
+                        :disabled="usernameDisabled"
                         outlined
                     ></v-text-field>
                 </v-col>
@@ -70,6 +74,10 @@ export default {
             codice_fiscale: "",
             username: ""
         },
+        nomeDisabled: false,
+        cognomeDisabled: false,
+        cfDisabled: false,
+        usernameDisabled: false,
         rules: {
             required: value => !!value || "Obbligatorio",
             counterMin: value =>
@@ -80,6 +88,20 @@ export default {
     }),
     created() {
         this.form = Object.assign(this.form, this.$store.state.form);
+    },
+    mounted() {
+        if (this.form.nome) {
+            this.nomeDisabled = true;
+        }
+        if (this.form.cognome) {
+            this.cognomeDisabled = true;
+        }
+        if (this.form.codice_fiscale) {
+            this.cfDisabled = true;
+        }
+        if (this.form.username) {
+            this.usernameDisabled = true;
+        }
     },
     computed: {
         isDisabled() {
