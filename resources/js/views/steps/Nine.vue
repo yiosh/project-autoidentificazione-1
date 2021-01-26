@@ -17,7 +17,7 @@
                 <v-form v-model="valid" class="w-100 d-flex flex-column">
                     <p>
                         Scatta un Selfie con in mano il tuo documento, per
-                        confermare la tua identittà
+                        confermare la tua identità
                     </p>
                     <v-file-input
                         v-if="$vuetify.breakpoint.mdAndDown"
