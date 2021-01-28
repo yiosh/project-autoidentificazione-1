@@ -68,7 +68,7 @@ export default {
             this.$store.commit("setStep", query);
             console.log("query", query);
         }
-        this.$router.push("/");
+        // this.$router.push("/");
         // console.log(this.$vuetify.breakpoint);
     },
     mounted() {

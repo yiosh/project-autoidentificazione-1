@@ -9,6 +9,14 @@
     >
         <v-form v-model="valid">
             <v-row>
+                <v-col>
+                    <p class="text mb-0">
+                        Segui la procedura di verifica della tua identità prima
+                        di poter utilizzare il conto gioco.
+                    </p>
+                </v-col>
+            </v-row>
+            <v-row>
                 <v-col cols="12" md="4" class="d-flex justify-center">
                     <v-icon :size="$vuetify.breakpoint.smAndDown ? 80 : 150"
                         >mdi-shield-key-outline</v-icon

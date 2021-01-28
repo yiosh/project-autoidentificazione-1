@@ -16,8 +16,7 @@
             <v-col cols="12" md="7" class="d-flexalign-center">
                 <v-form v-model="valid" class="w-100 d-flex flex-column">
                     <p>
-                        Scatta un Selfie con in mano il tuo documento, per
-                        confermare la tua identità
+                        Allega un selfie con il tuo documento di riconoscimento.
                     </p>
                     <v-file-input
                         v-if="$vuetify.breakpoint.mdAndDown"

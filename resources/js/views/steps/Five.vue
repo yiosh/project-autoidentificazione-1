@@ -14,9 +14,13 @@
                 >
             </v-col>
             <v-col cols="12" md="6" class="d-flex flex-column align-left">
-                <p>
+                <!-- <p>
                     Inserisci il numero di telefono con cui ti sei registrato
                     dove ti invieremo il codice sicurezza.
+                </p> -->
+                <p>
+                    Inserisci il tuo numero di telefono per ricevere il codice
+                    di sicurezza via SMS.
                 </p>
                 <v-text-field
                     dense

@@ -40,11 +40,13 @@
         <v-row>
             <v-col>
                 <p>
-                    I documenti accettati sono: Carta d'identità, Patente e
+                    I Documenti accettati sono: Carta d'Identità, Patente e
                     Passaporto.
                     <br />
                     Per i nati all'estero è necessario presentare il Passaporto
-                    o la Carta d'identità Italiana in corso di validità.
+                    o la Carta d'Identità italiana in corso di validità.
+                    <br />
+                    Allega copia fronte/retro leggibile dei documenti richiesti.
                 </p>
             </v-col>
         </v-row>

@@ -14,9 +14,13 @@
                 >
             </v-col>
             <v-col cols="12" md="8" class="d-flex flex-column align-left">
-                <p class="text">
+                <!-- <p class="text">
                     Inserisci indirizzo e-mail con cui ti sei registrato dove ti
                     invieremo il codice sicurezza
+                </p> -->
+                <p class="text">
+                    Inserisci l'indirizzo E-Mail con il quale ti sei registrato
+                    per ricevere il codice di sicurezza.
                 </p>
                 <v-text-field
                     autofocus
