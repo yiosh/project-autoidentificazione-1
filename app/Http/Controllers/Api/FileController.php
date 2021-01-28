@@ -25,7 +25,10 @@ class FileController extends Controller
         $condice_fiscale = $this->storeFile($request->file(['codice_fiscale']), 'codice_fiscale');
         
         return response()->json([
-            'status' => true
+            'status' => true,
+            'fronte' => $fronte,
+            'retro' => $retro,
+            'cf' => $condice_fiscale
         ], 200);
     }
 
