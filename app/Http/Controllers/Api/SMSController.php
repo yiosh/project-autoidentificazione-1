@@ -22,7 +22,7 @@ class SMSController extends Controller
         $telefonoExists = DB::table('users')->where('telefono', base64_encode($data['telefono']))->exists();
 
         if ($telefonoExists) {
-            return response()->json([ 'message' => 'Il tuo numero risulta già associato ad un utenza. Contatta il customer care per informazioni.'], 403);
+            return response()->json([ 'message' => "Non è possibile procedere con l'operazione. Il numero di cellulare che hai inserito è già presente nei nostri archivi. Per maggiori informazioni contatta il nostro Customer Care."], 403);
             exit;
         }
 

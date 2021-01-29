@@ -20,22 +20,30 @@ class MailController extends Controller
             'email' => 'required'
         ]);
 
+        $data['email'] = base64_encode($data['email']);
+
+        $emailExists = DB::table('users')->where('email', $data['email'])->exists();
+
+        if ($emailExists) {
+            return response()->json([ 'message' => "Non è possibile procedere con l'operazione. La mail che hai inserito è già presente nei nostri archivi. Per maggiori informazioni contatta il nostro Customer Care."], 403);
+            exit;
+        }
+
         $details['user'] = DB::table('users')
         ->updateOrInsert(['email' => $data['email']], $data);
 
-        $user = DB::table('users')->where('email', $data['email'])->first();
-        // dd($userId);
+        $user = DB::table('users')->where('email', $data['email'])->get()[0];
         
         $verificationCode = rand(11111,99999);
         $details['verification'] = DB::table('mail_verifications')
-        ->updateOrInsert(['user_id' => $user->id, 'email' => base64_encode($data['email'])], ['email' => base64_encode($data['email']), 'verification_code' => $verificationCode]);
+        ->updateOrInsert(['user_id' => $user->id, 'email' => $data['email']], ['email' => $data['email'], 'verification_code' => $verificationCode]);
         
         $details = [
             'title' => 'CODICE di verifica mail',
             'body' => 'Questo è il codice di verifica per il tuo indirizzo email',
             'verificationCode' => $verificationCode
         ];
-        \Mail::to($data['email'])->send(new \App\Mail\TestMail($details));
+        \Mail::to(base64_decode($data['email']))->send(new \App\Mail\TestMail($details));
         return response()->json($details);
     }
 

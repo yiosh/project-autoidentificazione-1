@@ -40,13 +40,13 @@
                             validazione del tuo account.
                         </p>
                         <p>
-                            Avviando la procedura ci autorizzi ad usare i tuoi
-                            dati per l'identificazione come indicato nella
-                            nostra informativa che puoi leggere
+                            Avviando la procedura ci autorizzi ad utilizzare i
+                            tuoi dati per l'identificazione come indicato nella
+                            nostra
                             <a
                                 href="https://online.betitaly.it/privacy?cookieprivacy=true"
                                 target="__blank"
-                                >QUI</a
+                                >informativa</a
                             >.
                         </p>
                     </v-col>

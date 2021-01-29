@@ -240,6 +240,12 @@ export default {
                 })
                 .catch(error => {
                     this.btnLoading = false;
+                    if (error.response.status == 403) {
+                        return alert(error.response.data.message);
+                    }
+                    if (error.response.status == 404) {
+                        return alert(error.response.data.message);
+                    }
                     return alert(error);
                 });
         },
@@ -265,6 +271,9 @@ export default {
                 })
                 .catch(error => {
                     this.btnLoading = false;
+                    if (error.response.status == 403) {
+                        return alert(error.response.data.message);
+                    }
                     if (error.response.status == 404) {
                         return alert(error.response.data.message);
                     }
@@ -291,7 +300,7 @@ export default {
                     } else {
                         this.btnLoading = false;
                         alert(
-                            "Si è verificato un problema durante la verifica della tua email, riprova"
+                            "Si è verificato un problema durante la verifica del telefono, riprova"
                         );
                     }
                 })
@@ -299,7 +308,8 @@ export default {
                     this.btnLoading = false;
                     if (error.response.status == 403) {
                         return alert(error.response.data.message);
-                    } else if (error.response.status == 500) {
+                    }
+                    if (error.response.status == 500) {
                         return alert(
                             "Il numero di telefono inserito non è valido"
                         );
