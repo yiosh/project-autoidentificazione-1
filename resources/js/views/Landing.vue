@@ -35,9 +35,7 @@
                         </p>
                         <p>
                             Dovrai fornire il tuo indirizzo E-mail ed il tuo
-                            numero di cellulare. Non è necessario essere
-                            presente in un nostro Punto Vendita per la
-                            validazione del tuo account.
+                            numero di cellulare.
                         </p>
                         <p>
                             Avviando la procedura ci autorizzi ad utilizzare i

@@ -17,7 +17,8 @@ class MailController extends Controller
             'cognome' => 'required',
             'codice_fiscale' => 'required',
             'username' => 'required',
-            'email' => 'required'
+            'email' => 'required',
+            'external' => 'required'
         ]);
 
         $data['email'] = base64_encode($data['email']);

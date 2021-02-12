@@ -12,7 +12,8 @@ const store = new Vuex.Store({
                 ? localStorage.codice_fiscale
                 : "",
             username: localStorage.username ? localStorage.username : "",
-            email: ""
+            email: "",
+            external: localStorage.external ? localStorage.external : 0
         }
     },
     mutations: {

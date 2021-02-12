@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('cognome');
             $table->string('ip_address')->nullable();
             $table->smallInteger('status')->default(0);
+            $table->smallInteger('external')->default(0);
             $table->string('codice_fiscale', 16);
             $table->string('username');
             $table->string('email');

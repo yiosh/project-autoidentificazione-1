@@ -55,21 +55,26 @@ export default {
             query.nome = query.name;
             query.cognome = query.lastname;
             query.codice_fiscale = query.cf;
+            query.external = 1;
 
             delete query.name;
             delete query.lastname;
             delete query.cf;
-            // localStorage.query = JSON.stringify(query);
+
             for (const key in query) {
-                const element = atob(query[key]);
-                localStorage.setItem(key, element);
-                query[key] = element;
+                if (key != "external") {
+                    console.log("key", key);
+                    const element = atob(query[key]);
+                    localStorage.setItem(key, element);
+                    query[key] = element;
+                } else {
+                    const element = query[key];
+                    localStorage.setItem(key, element);
+                }
             }
             this.$store.commit("setStep", query);
-            console.log("query", query);
         }
         this.$router.push("/");
-        // console.log(this.$vuetify.breakpoint);
     },
     mounted() {
         document.addEventListener("keypress", e => {
