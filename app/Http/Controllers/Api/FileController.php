@@ -7,6 +7,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
+use App\User;
 
 class FileController extends Controller
 {
@@ -22,13 +23,13 @@ class FileController extends Controller
 
         $fronte = $this->storeFile($request->file(['fronte']), 'fronte');
         $retro = $this->storeFile($request->file(['retro']), 'retro');
-        $condice_fiscale = $this->storeFile($request->file(['codice_fiscale']), 'codice_fiscale');
+        $codice_fiscale = $this->storeFile($request->file(['codice_fiscale']), 'codice_fiscale');
         
         return response()->json([
             'status' => true,
             'fronte' => $fronte,
             'retro' => $retro,
-            'cf' => $condice_fiscale
+            'cf' => $codice_fiscale
         ], 200);
     }
 
@@ -42,26 +43,19 @@ class FileController extends Controller
 
         $selfie = $this->storeFile($request->file(['selfie']), 'selfie');
 
-        $result = DB::table('users')->where('id', $data['user_id'])->update(['status' => 1]);
+        $result = User::where('id', $data['user_id'])->update(['status' => 1]);
         
-        return response()->json([
-            'status' => true,
-        ], 200);
+        return (new Response(['message' => "Selfie stored."], 200));
     }
 
     public function downloadFile($fileName, Request $request)
     {
-        // $fileExists = Storage::download('/app/public/files/'.$data['file_name']);
-
         $file = Storage::disk('public')->get("/files/".$fileName);
- 
-		return (new Response($file, 200))
-              ->header('Content-Type', 'image/jpeg');
 
-        // return response()->json([
-        //     'fileExists' => $fileExists,
-        //     'status' => true,
-        // ], 200);
+        if ($file) {
+            return (new Response($file, 200))->header('Content-Type', 'image/jpeg');
+        }
+        return (new Response(['message' => "Nessun file trovato"], 404));
     }
 
     public function storeFile($file, $content)

@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Api;
 use Carbon\Carbon;
 use Faker\Provider\DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\User;
 
 class MailController extends Controller
 {
@@ -23,29 +25,32 @@ class MailController extends Controller
 
         $data['email'] = base64_encode($data['email']);
 
-        $emailExists = DB::table('users')->where('email', $data['email'])->exists();
+        $emailExists = User::where('email', $data['email'])->exists();
 
         if ($emailExists) {
-            return response()->json([ 'message' => "Non è possibile procedere con l'operazione. La mail che hai inserito è già presente nei nostri archivi. Per maggiori informazioni contatta il nostro Customer Care."], 403);
-            exit;
+            return (new Response([ 'message' => "Non è possibile procedere con l'operazione. La mail che hai inserito è già presente nei nostri archivi. Per maggiori informazioni contatta il nostro Customer Care."], 403));
         }
 
-        $details['user'] = DB::table('users')
-        ->updateOrInsert(['email' => $data['email']], $data);
+        $updateInsert = User::updateOrInsert(['email' => $data['email']], $data);
 
-        $user = DB::table('users')->where('email', $data['email'])->get()[0];
+        $user = User::where('email', $data['email'])->first();
         
         $verificationCode = rand(11111,99999);
-        $details['verification'] = DB::table('mail_verifications')
+        $mailVerification = DB::table('mail_verifications')
         ->updateOrInsert(['user_id' => $user->id, 'email' => $data['email']], ['email' => $data['email'], 'verification_code' => $verificationCode]);
-        
-        $details = [
-            'title' => 'CODICE di verifica mail',
-            'body' => 'Questo è il codice di verifica per il tuo indirizzo email',
-            'verificationCode' => $verificationCode
-        ];
-        \Mail::to(base64_decode($data['email']))->send(new \App\Mail\TestMail($details));
-        return response()->json($details);
+
+        if ($mailVerification) {
+            $details = [
+                'title' => 'CODICE di verifica mail',
+                'body' => 'Questo è il codice di verifica per il tuo indirizzo email',
+                'verificationCode' => $verificationCode
+            ];
+            \Mail::to(base64_decode($data['email']))->send(new \App\Mail\TestMail($details));
+
+            return (new Response([ 'message' => "Email inviata correttamente.", 'mailverification' => $mailVerification], 200));
+        }
+        return (new Response([ 'message' => "Bad request.", 'mailverification' => $mailVerification], 400));
+
     }
 
     public function verifyMail(Request $request)
@@ -54,20 +59,17 @@ class MailController extends Controller
             'verification_code' => 'required'
         ]);
 
-        $row = DB::table('mail_verifications')->where('verification_code', $data['verification_code'])->first();
-        if ($row) {
-            $row = (array)$row;
-            $userId = $row['user_id'];
+        $mailVerification = DB::table('mail_verifications')->where('verification_code', $data['verification_code'])->first();
+        if ($mailVerification) {
 
-            $result = DB::table('users')
-                ->where('id', $row['user_id'])
+            $result = User::where('id', $mailVerification->user_id)
                 ->update(['email_verified_at' =>  Carbon::now(), 'ip_address' => base64_encode($_SERVER['REMOTE_ADDR'])]);
 
-            $delete = DB::table('mail_verifications')->where('id', '=', $row['id'])->delete();
+            $delete = DB::table('mail_verifications')->where('id', '=', $mailVerification->id)->delete();
 
-            return response()->json([ 'status' => $result, 'delete' => $delete, 'user_id' => $userId ]);
+            return (new Response([ 'message' => "Email correttamente verificato."], 200));
         } else {
-            return response()->json([ 'message' => 'Il codice inserito non è valido.' ], 404);
+            return (new Response([ 'message' => "Il codice inserito non è valido."], 400));
         }
     }
 }
